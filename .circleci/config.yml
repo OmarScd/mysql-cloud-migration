@@ -1,0 +1,22 @@
+version: 2.1
+jobs:
+  deploy:
+    docker:
+      - image: google/cloud-sdk
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Set up gcloud config
+          command: |
+            echo $GCLOUD_SERVICE_KEY | base64 --decode | gcloud auth activate-service-account --key-file=-
+            gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+      - run: cat ./app.yaml
+      - run:
+          name: Copy DAG files to Cloud Storage
+          command: gsutil cp src/dags/*.py gs://uhma_test/dags
+workflows:
+  version: 2
+  deploy_en_GCP:
+    jobs:
+      - deploy
