@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
 from airflow import DAG
+from airflow.operators.bash_operator import BashOperator
 
 default_args = {
     "owner": "uhma",
@@ -17,4 +18,10 @@ with DAG(dag_id="uhma_data_pipeline",
         schedule_interval="@daily",
         default_args=default_args,
         catchup=False) as dag:
-    pass
+    
+    hello_friends = BashOperator(
+        task_id="hello_friends",
+        bash_command="""
+            echo 'Hello friends'
+        """,
+    )
