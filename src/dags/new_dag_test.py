@@ -14,7 +14,7 @@ default_args = {
     "retries_delay": timedelta(minutes=5),
 }
 
-with DAG(dag_id="uhma_data_pipeline",
+with DAG(dag_id="new_dag_test",
         schedule_interval="@daily",
         default_args=default_args,
         catchup=False) as dag:
