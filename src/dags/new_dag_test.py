@@ -25,3 +25,17 @@ with DAG(dag_id="new_dag_test",
             echo 'Hello friends'
         """,
     )
+
+    good_morning = BashOperator(
+        task_id="good_morning",
+        bash_command="""
+            echo 'good morning'
+        """,
+    )
+
+    bye_friends = BashOperator(
+        task_id="bye_friends",
+        bash_command="""
+            echo 'Bye friends'
+        """,
+    )
