@@ -13,7 +13,7 @@ jobs:
             gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
       - run:
           name: Copy DAG files to Cloud Storage
-          command: gsutil cp src/dags/*.py gs://uhma_test/dags
+          command: gsutil cp src/dags/*.py gs://uhma_test/dags/
 workflows:
   version: 2
   deploy_en_GCP:
