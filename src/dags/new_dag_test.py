@@ -39,3 +39,6 @@ with DAG(dag_id="new_dag_test",
             echo 'Bye friends'
         """,
     )
+
+    hello_friends >> bye_friends
+    good_morning >> bye_friends
